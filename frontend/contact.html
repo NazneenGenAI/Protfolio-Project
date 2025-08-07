@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Nazneen Aktar</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --text-light: #f8fafc;
+            --text-dark: #1e293b;
+            --bg-dark: #0f172a;
+            --bg-light: #ffffff;
+            --card-dark: #1e293b;
+            --card-light: #f1f5f9;
+            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            --success-color: #10b981;
+            --error-color: #ef4444;
+            --warning-color: #f59e0b;
+        }
+
+        [data-theme="light"] {
+            --text-color: var(--text-dark);
+            --bg-color: var(--bg-light);
+            --card-color: var(--card-light);
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        [data-theme="dark"] {
+            --text-color: var(--text-light);
+            --bg-color: var(--bg-dark);
+            --card-color: var(--card-dark);
+            --nav-bg: rgba(15, 23, 42, 0.95);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--bg-color);
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-color);
+            border-radius: 25px;
+            box-shadow: 0 25px 60px rgba(99, 102, 241, 0.1);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-header {
+            background: var(--gradient);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .contact-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-form {
+            padding: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 15px;
+            background: var(--bg-color);
+            color: var(--text-color);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-color);
+            opacity: 0.5;
+        }
+
+        textarea.form-input {
+            resize: vertical;
+            min-height: 150px;
+            font-family: inherit;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        /* Status Messages */
+        .status-message {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .status-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .status-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .status-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error-color);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .status-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning-color);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        /* Social Links */
+        .social-section {
+            background: var(--bg-color);
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .social-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: var(--card-color);
+            border: 2px solid rgba(99, 102, 241, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: var(--card-color);
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        /* Form Validation */
+        .form-input.error {
+            border-color: var(--error-color);
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+        }
+
+        .form-input.success {
+            border-color: var(--success-color);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Floating Particles */
+        .particle {
+            position: absolute;
+            background: var(--gradient);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .particle:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 70%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .particle:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 4s;
+        }
+
+        /* Animations */
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-30px) rotate(270deg); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-container {
+                margin: 1rem;
+                border-radius: 20px;
+            }
+
+            .contact-header {
+                padding: 2rem 1.5rem;
+            }
+
+            .contact-title {
+                font-size: 2.5rem;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+
+            .theme-toggle {
+                top: 1rem;
+                right: 1rem;
+                width: 45px;
+                height: 45px;
+                padding: 0.6rem;
+            }
+
+            .social-links {
+                gap: 1rem;
+            }
+
+            .social-link {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-title {
+                font-size: 2rem;
+            }
+
+            .contact-subtitle {
+                font-size: 1rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <i class="fas fa-moon" id="theme-icon"></i>
+    </button>
+
+    <div class="contact-container fade-in">
+        <div class="contact-header">
+            <h1 class="contact-title">Get In Touch</h1>
+            <p class="contact-subtitle">Let's collaborate on something amazing!</p>
+        </div>
+
+        <form class="contact-form" id="contactForm">
+            <div id="statusMessage" class="status-message"></div>
+
+            <div class="form-group">
+                <label for="name" class="form-label">
+                    <i class="fas fa-user"></i> Full Name
+                </label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    class="form-input" 
+                    placeholder="Enter your full name"
+                    required
+                >
+                <div class="error-message" id="nameError">Please enter your full name</div>
+            </div>
+
+            <div class="form-group">
+                <label for="email" class="form-label">
+                    <i class="fas fa-envelope"></i> Email Address
+                </label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-input" 
+                    placeholder="your.email@example.com"
+                    required
+                >
+                <div class="error-message" id="emailError">Please enter a valid email address</div>
+            </div>
+
+            <div class="form-group">
+                <label for="subject" class="form-label">
+                    <i class="fas fa-tag"></i> Subject
+                </label>
+                <select id="subject" name="subject" class="form-input" required>
+                    <option value="">Select a subject</option>
+                    <option value="collaboration">Collaboration Opportunity</option>
+                    <option value="job">Job Opportunity</option>
+                    <option value="project">Project Discussion</option>
+                    <option value="research">Research Collaboration</option>
+                    <option value="consulting">Consulting Services</option>
+                    <option value="other">Other</option>
+                </select>
+                <div class="error-message" id="subjectError">Please select a subject</div>
+            </div>
+
+            <div class="form-group">
+                <label for="message" class="form-label">
+                    <i class="fas fa-comment"></i> Message
+                </label>
+                <textarea 
+                    id="message" 
+                    name="message" 
+                    class="form-input" 
+                    placeholder="Tell me about your project, idea, or how we can work together..."
+                    required
+                    minlength="10"
+                ></textarea>
+                <div class="error-message" id="messageError">Please enter a message (minimum 10 characters)</div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+        </form>
+
+        <div class="social-section">
+            <h3 class="social-title">Connect With Me</h3>
+            <div class="social-links">
+                <a href="https://github.com/NazneenGenAI" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/nazneen-aktar-28a73b179/" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:nazneen.aktar@email.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://twitter.com/nazneenaktar" class="social-link" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://discord.gg/nazneenaktar" class="social-link" title="Discord">
+                    <i class="fab fa-discord"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_CONFIG = {
+            // For local development
+            development: 'http://localhost:3001',
+            // For production (update when you deploy)
+            production: 'https://your-backend-domain.vercel.app'
+        };
+
+        // Auto-detect environment
+        const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? API_CONFIG.development 
+            : API_CONFIG.production;
+
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const currentTheme = body.getAttribute('data-theme');
+            
+            if (currentTheme === 'light') {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                body.setAttribute('data-theme', 'light');
+                themeIcon.className = 'fas fa-moon';
+            }
+        }
+
+        // Form Validation and Submission
+        class ContactForm {
+            constructor() {
+                this.form = document.getElementById('contactForm');
+                this.submitBtn = document.getElementById('submitBtn');
+                this.statusMessage = document.getElementById('statusMessage');
+                this.apiUrl = `${API_BASE_URL}/api/contact`;
+                this.init();
+            }
+
+            init() {
+                this.form.addEventListener('submit', this.handleSubmit.bind(this));
+                
+                // Real-time validation
+                const inputs = this.form.querySelectorAll('.form-input');
+                inputs.forEach(input => {
+                    input.addEventListener('blur', () => this.validateField(input));
+                    input.addEventListener('input', () => this.clearFieldError(input));
+                });
+
+                // Test backend connection on load
+                this.testBackendConnection();
+            }
+
+            async testBackendConnection() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/health`);
+                    if (response.ok) {
+                        console.log('✅ Backend server connected successfully');
+                    } else {
+                        console.warn('⚠️ Backend server responded with error');
+                    }
+                } catch (error) {
+                    console.warn('⚠️ Backend server not accessible. Make sure it\'s running on port 3001');
+                    console.warn('Run: cd backend && npm run dev');
+                }
+            }
+
+            validateField(field) {
+                const value = field.value.trim();
+                const fieldName = field.name;
+                let isValid = true;
+                let errorMessage = '';
+
+                switch(fieldName) {
+                    case 'name':
+                        if (!value) {
+                            errorMessage = 'Please enter your full name';
+                            isValid = false;
+                        } else if (value.length < 2) {
+                            errorMessage = 'Name must be at least 2 characters';
+                            isValid = false;
+                        }
+                        break;
+
+                    case 'email':
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!value) {
+                            errorMessage = 'Please enter your email address';
+                            isValid = false;
+                        } else if (!emailRegex.test(value)) {
+                            errorMessage = 'Please enter a valid email address';
+                            isValid = false;
+                        }
+                        break;
+
+                    case 'subject':
+                        if (!value) {
+                            errorMessage = 'Please select a subject';
+                            isValid = false;
+                        }
+                        break;
+
+                    case 'message':
+                        if (!value) {
+                            errorMessage = 'Please enter your message';
+                            isValid = false;
+                        } else if (value.length < 10) {
+                            errorMessage = 'Message must be at least 10 characters';
+                            isValid = false;
+                        } else if (value.length > 2000) {
+                            errorMessage = 'Message must be less than 2000 characters';
+                            isValid = false;
+                        }
+                        break;
+                }
+
+                this.showFieldError(field, errorMessage, !isValid);
+                return isValid;
+            }
+
+            showFieldError(field, message, hasError) {
+                const errorElement = document.getElementById(field.name + 'Error');
+                
+                if (hasError) {
+                    field.classList.add('error');
+                    field.classList.remove('success');
+                    errorElement.textContent = message;
+                    errorElement.classList.add('show');
+                } else {
+                    field.classList.remove('error');
+                    field.classList.add('success');
+                    errorElement.classList.remove('show');
+                }
+            }
+
+            clearFieldError(field) {
+                field.classList.remove('error');
+                const errorElement = document.getElementById(field.name + 'Error');
+                errorElement.classList.remove('show');
+            }
+
+            async handleSubmit(e) {
+                e.preventDefault();
+                
+                // Validate all fields
+                const inputs = this.form.querySelectorAll('.form-input');
+                let isFormValid = true;
+                
+                inputs.forEach(input => {
+                    if (!this.validateField(input)) {
+                        isFormValid = false;
+                    }
+                });
+
+                if (!isFormValid) {
+                    this.showStatus('Please fix the errors above', 'error');
+                    return;
+                }
+
+                // Prepare form data
+                const formData = new FormData(this.form);
+                const data = Object.fromEntries(formData);
+                
+                this.setLoading(true);
+                this.showStatus('Sending your message...', 'warning');
+
+                try {
+                    // Send to backend API
+                    const response = await fetch(this.apiUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    const result = await response.json();
+                    
+                    if (response.ok && result.success) {
+                        // Success response
+                        this.showStatus('✨ Thank you! Your message has been sent successfully. You should receive a confirmation email shortly!', 'success');
+                        
+                        // Reset form
+                        this.form.reset();
+                        inputs.forEach(input => {
+                            input.classList.remove('success', 'error');
+                        });
+                        
+                        // Log success for debugging
+                        console.log('✅ Message sent successfully:', result);
+                        
+                    } else {
+                        // Handle validation errors from backend
+                        if (result.errors) {
+                            Object.keys(result.errors).forEach(field => {
+                                const input = document.getElementById(field);
+                                if (input) {
+                                    this.showFieldError(input, result.errors[field], true);
+                                }
+                            });
+                        }
+                        
+                        this.showStatus(result.message || 'Please check your input and try again.', 'error');
+                    }
+                    
+                } catch (error) {
+                    console.error('❌ Network error:', error);
+                    
+                    // Provide helpful error messages
+                    if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                        this.showStatus('❌ Cannot connect to server. Please make sure the backend is running.', 'error');
+                        console.warn('💡 To start backend: cd backend && npm run dev');
+                    } else if (error.message.includes('CORS')) {
+                        this.showStatus('❌ Connection blocked. Please check CORS configuration.', 'error');
+                    } else {
+                        this.showStatus('❌ Network error. Please check your connection and try again.', 'error');
+                    }
+                } finally {
+                    this.setLoading(false);
+                }
+            }
+
+            setLoading(loading) {
+                if (loading) {
+                    this.submitBtn.disabled = true;
+                    this.submitBtn.innerHTML = '<span class="btn-loading"></span>Sending...';
+                } else {
+                    this.submitBtn.disabled = false;
+                    this.submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                }
+            }
+
+            showStatus(message, type) {
+                this.statusMessage.className = `status-message status-${type}`;
+                this.statusMessage.textContent = message;
+                this.statusMessage.classList.add('show');
+                
+                // Auto-hide after 5 seconds for success/error messages
+                if (type === 'success' || type === 'error') {
+                    setTimeout(() => {
+                        this.statusMessage.classList.remove('show');
+                    }, 5000);
+                }
+            }
+
+            // Debug method to test API connection
+            async testConnection() {
+                try {
+                    const response = await fetch(`${API_BASE_URL}/api/health`);
+                    const result = await response.json();
+                    console.log('🔗 Backend status:', result);
+                    return result.status === 'OK';
+                } catch (error) {
+                    console.error('🚫 Backend connection failed:', error);
+                    return false;
+                }
+            }
+        }
+
+        // Initialize contact form when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            const contactForm = new ContactForm();
+            
+            // Test backend connection and show status
+            console.log(`🔗 Connecting to: ${API_BASE_URL}`);
+            const isConnected = await contactForm.testConnection();
+            
+            if (!isConnected) {
+                console.warn('⚠️ Backend server not running or not accessible');
+                console.warn('💡 To start backend server: cd backend && npm run dev');
+            } else {
+                console.log('✅ Backend server is running and accessible');
+            }
+        });
+
+        // Enhanced interactions
+        document.addEventListener('mousemove', (e) => {
+            const particles = document.querySelectorAll('.particle');
+            particles.forEach((particle, index) => {
+                const speed = (index + 1) * 0.01;
+                const x = e.clientX * speed;
+                const y = e.clientY * speed;
+                particle.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
+
+        // Form input focus effects
+        document.addEventListener('DOMContentLoaded', () => {
+            const inputs = document.querySelectorAll('.form-input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
+            });
+        });
+
+        // Utility function for production deployment
+        function updateApiUrl(newUrl) {
+            console.log(`🔄 API URL updated to: ${newUrl}`);
+            API_CONFIG.production = newUrl;
+        }
+    </script>
+</body>
+</html>
