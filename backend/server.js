@@ -13,13 +13,12 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(helmet());
-// Replace the existing CORS configuration with this:
 app.use(cors({
     origin: [
         'http://localhost:3000',
         'http://127.0.0.1:3000',
         'http://[::1]:3000',
+        'https://nazneen-protfolio.netlify.app',  // Netlify URL
         process.env.FRONTEND_URL || 'http://localhost:3000'
     ],
     credentials: true,
