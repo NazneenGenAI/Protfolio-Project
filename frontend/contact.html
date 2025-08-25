@@ -544,8 +544,8 @@
         const API_CONFIG = {
             // For local development
             development: 'http://localhost:3001',
-            // For production 
-            production: 'https://protfolio-project-production.up.railway.app' 
+            // For production - automatically use current domain for Vercel
+            production: window.location.origin
         };
 
         // Auto-detect environment
