@@ -13,16 +13,16 @@
         }
 
         :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #06b6d4;
+            --primary-color: #008080;
+            --secondary-color: #006666;
+            --accent-color: #00A0A0;
             --text-light: #f8fafc;
             --text-dark: #1e293b;
             --bg-dark: #0f172a;
             --bg-light: #ffffff;
             --card-dark: #1e293b;
             --card-light: #f1f5f9;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            --gradient: linear-gradient(135deg, #008080 0%, #006666 50%, #00A0A0 100%);
             --success-color: #10b981;
             --error-color: #ef4444;
             --warning-color: #f59e0b;
@@ -60,10 +60,10 @@
             width: 100%;
             background: var(--card-color);
             border-radius: 25px;
-            box-shadow: 0 25px 60px rgba(99, 102, 241, 0.1);
+            box-shadow: 0 25px 60px rgba(0, 128, 128, 0.1);
             overflow: hidden;
             position: relative;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(0, 128, 128, 0.1);
         }
 
         .contact-header {
@@ -121,7 +121,7 @@
         .form-input {
             width: 100%;
             padding: 1.2rem;
-            border: 2px solid rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(0, 128, 128, 0.2);
             border-radius: 15px;
             background: var(--bg-color);
             color: var(--text-color);
@@ -133,7 +133,7 @@
         .form-input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 25px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 0 25px rgba(0, 128, 128, 0.2);
             transform: translateY(-2px);
         }
 
@@ -165,7 +165,7 @@
 
         .submit-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 128, 128, 0.3);
         }
 
         .submit-btn:active {
@@ -249,7 +249,7 @@
             width: 60px;
             height: 60px;
             background: var(--card-color);
-            border: 2px solid rgba(99, 102, 241, 0.2);
+            border: 2px solid rgba(0, 128, 128, 0.2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -520,19 +520,19 @@
         <div class="social-section">
             <h3 class="social-title">Connect With Me</h3>
             <div class="social-links">
-                <a href="https://github.com/NazneenGenAI" class="social-link" title="GitHub">
+                <a href="https://github.com/NazneenGenAI" class="social-link" title="GitHub" target="_blank">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/nazneen-aktar-28a73b179/" class="social-link" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/nazneen-aktar-28a73b179/" class="social-link" title="LinkedIn" target="_blank">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="mailto:nazneen.aktar@email.com" class="social-link" title="Email">
+                <a href="#" onclick="copyEmail(event)" class="social-link" title="Click to copy email" data-email="nazneenaktar39@gmail.com">
                     <i class="fas fa-envelope"></i>
                 </a>
-                <a href="https://twitter.com/nazneenaktar" class="social-link" title="Twitter">
-                    <i class="fab fa-twitter"></i>
+                <a href="https://x.com/nazneen_ak39064" class="social-link" title="X (formerly Twitter)" target="_blank">
+                    <span style="font-weight: bold; font-size: 1.2em;">𝕏</span>
                 </a>
-                <a href="https://discord.gg/nazneenaktar" class="social-link" title="Discord">
+                <a href="https://discord.gg/nazneenaktar" class="social-link" title="Discord" target="_blank">
                     <i class="fab fa-discord"></i>
                 </a>
             </div>
@@ -843,6 +843,25 @@
         function updateApiUrl(newUrl) {
             console.log(`🔄 API URL updated to: ${newUrl}`);
             API_CONFIG.production = newUrl;
+        }
+
+        // Email copy function
+        function copyEmail(event) {
+            event.preventDefault();
+            const email = event.currentTarget.getAttribute('data-email');
+            
+            // Try to copy to clipboard
+            if (navigator.clipboard) {
+                navigator.clipboard.writeText(email).then(() => {
+                    alert('Email address copied to clipboard: ' + email);
+                }).catch(() => {
+                    // Fallback if clipboard fails
+                    alert('Email: ' + email + '\n\nPlease copy this email address manually.');
+                });
+            } else {
+                // Fallback for older browsers
+                alert('Email: ' + email + '\n\nPlease copy this email address manually.');
+            }
         }
     </script>
 </body>

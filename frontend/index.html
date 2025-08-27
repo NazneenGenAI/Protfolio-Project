@@ -13,16 +13,16 @@
         }
 
         :root {
-            --primary-color: #6366f1;
-            --secondary-color: #8b5cf6;
-            --accent-color: #06b6d4;
+            --primary-color: #008080;
+            --secondary-color: #006666;
+            --accent-color: #00A0A0;
             --text-light: #f8fafc;
             --text-dark: #1e293b;
             --bg-dark: #0f172a;
             --bg-light: #ffffff;
             --card-dark: #1e293b;
             --card-light: #f1f5f9;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #06b6d4 100%);
+            --gradient: linear-gradient(135deg, #008080 0%, #006666 50%, #00A0A0 100%);
         }
 
         [data-theme="light"] {
@@ -242,7 +242,7 @@
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 128, 128, 0.3);
         }
 
         /* Floating Elements */
@@ -311,7 +311,7 @@
             height: 300px;
             border-radius: 20px;
             object-fit: cover;
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 128, 128, 0.2);
             transition: transform 0.3s ease;
         }
 
@@ -344,7 +344,7 @@
             border-radius: 15px;
             text-align: center;
             transition: all 0.3s ease;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(0, 128, 128, 0.1);
             color: var(--text-color);
         }
 
@@ -356,7 +356,7 @@
 
         .skill-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 128, 128, 0.2);
             border-color: var(--primary-color);
         }
 
@@ -407,12 +407,12 @@
             width: 45%;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(0, 128, 128, 0.1);
         }
 
         .timeline-content:hover {
             transform: scale(1.02);
-            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 128, 128, 0.2);
         }
 
         .timeline-dot {
@@ -456,7 +456,7 @@
             background: var(--card-color);
             padding: 2rem;
             border-radius: 20px;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(0, 128, 128, 0.1);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -474,7 +474,7 @@
 
         .education-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 128, 128, 0.2);
         }
 
         .degree {
@@ -506,14 +506,14 @@
             background: var(--card-color);
             border-radius: 20px;
             overflow: hidden;
-            border: 1px solid rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(0, 128, 128, 0.1);
             transition: all 0.3s ease;
             position: relative;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
+            box-shadow: 0 25px 50px rgba(0, 128, 128, 0.2);
         }
 
         .project-image {
@@ -719,7 +719,7 @@
             
             <div class="hero-content">
                 <h1 class="hero-title">Nazneen Aktar</h1>
-                <p class="hero-subtitle">Full Stack Developer & Data Scientist</p>
+                <p class="hero-subtitle">Full Stack Developer</p>
                 <p class="hero-description">
                     Passionate developer with expertise in web applications, machine learning, and data-driven solutions. 
                     Bridging technology and environmental science to create innovative solutions for real-world challenges.
@@ -796,7 +796,7 @@
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <div class="timeline-date">January 2025 - March 2025</div>
+                        <div class="timeline-date">January 2025 - June 2025</div>
                         <h3 class="timeline-title">GenAI Intern</h3>
                         <div class="timeline-company">Vaiste Productions Oy, Turku, Finland</div>
                         <p>Working on generative AI projects and contributing to innovative solutions in the AI space. Developing expertise in cutting-edge AI technologies and practical applications.</p>
@@ -858,22 +858,22 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-comments"></i>
+                        <i class="fas fa-file-pdf"></i>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">Real-Time Chat Application</h3>
-                        <p>Feature-rich real-time chat application with secure authentication, private messaging, image sharing, and online/offline status indicators.</p>
+                        <h3 class="project-title">PDF to Image Converter</h3>
+                        <p>A client-side web application that converts PDF files to high-quality images (JPG/PNG) directly in the browser. Features drag-and-drop upload, configurable output settings including DPI scaling, quality control, and color filters like grayscale and sepia. Supports batch processing with ZIP download for multiple pages and individual page downloads. Built with PDF.js for reliable PDF rendering and requires no server-side processing - all conversions happen locally for privacy and speed.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">MERN Stack</span>
-                            <span class="tech-tag">Socket.io</span>
-                            <span class="tech-tag">TailwindCSS</span>
-                            <span class="tech-tag">JWT Auth</span>
+                            <span class="tech-tag">PDF.js</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">HTML5 Canvas</span>
+                            <span class="tech-tag">Client-side</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/NazneenGenAI/Fullstack-Application/tree/master" class="project-link">
+                            <a href="https://github.com/NazneenGenAI/PDF_Convertor" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
-                            <a href="#" class="project-link">
+                            <a href="https://pdfconvertoraktar.vercel.app/" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
@@ -886,7 +886,7 @@
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">NextCommerce</h3>
-                        <p>NextCommerce is a modern, full-stack e-commerce platform built with Next.js and React. It features a clean, responsive design with product browsing, search, and filtering capabilities across multiple categories including Electronics, Clothing, and Home & Garden. The application integrates Stripe for secure payment processing and uses PostgreSQL with Prisma ORM for robust data management. Users can add items to their cart, proceed through a streamlined checkout process, and receive order confirmations. The platform includes an admin dashboard for product management and is deployed on Vercel with a Supabase database backend. With its modern tech stack and user-friendly interface, it provides a complete online shopping experience for both customers and administrators.</p>
+                        <p>NextCommerce is a full-stack e-commerce platform built with Next.js and React, featuring product browsing, search, filtering, and a streamlined checkout with Stripe payments. It uses PostgreSQL with Prisma and Supabase for data management, includes an admin dashboard for product control, and is deployed on Vercel for a modern, user-friendly shopping experience.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Next.js</span>
                             <span class="tech-tag">Stripe</span>
@@ -894,10 +894,10 @@
                             <span class="tech-tag">Prisma</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/NazneenGenAI/Next_Ecommerce" class="project-link">
+                            <a href="https://github.com/NazneenGenAI/Next_Ecommerce" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
-                            <a href="https://next-ecommerce-liard-chi.vercel.app/" class="project-link">
+                            <a href="https://next-ecommerce-liard-chi.vercel.app/" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
@@ -910,7 +910,7 @@
                     </div>
                     <div class="project-info">
                         <h3 class="project-title">Next.js Admin Dashboard</h3>
-                        <p>A full-stack admin dashboard built with Next.js 15, featuring secure authentication via NextAuth.js with credentials and GitHub providers. The application includes comprehensive user and product management with CRUD operations, MongoDB integration, and responsive UI components. Features include real-time search functionality, pagination, role-based access control, and analytics visualization. Built with modern React patterns, custom CSS modules, and optimized for production deployment. Perfect for managing users, products, and business analytics in a clean, professional interface.</p>
+                        <p>Next.js Admin Dashboard is a full-stack management tool built with Next.js 15, NextAuth.js authentication, and MongoDB. It supports user and product CRUD operations, role-based access, real-time search, pagination, and analytics visualization, offering a responsive and professional interface for business management.</p>
                         <div class="project-tech">
                             <span class="tech-tag">Next.js 15</span>
                             <span class="tech-tag">NextAuth.js</span>
@@ -918,10 +918,10 @@
                             <span class="tech-tag">React</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/NazneenGenAI/Next_Dashboard" class="project-link">
+                            <a href="https://github.com/NazneenGenAI/Next_Dashboard" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
-                            <a href="https://next-dashboard-alpha-murex.vercel.app/dashboard" class="project-link">
+                            <a href="https://next-dashboard-alpha-murex.vercel.app/dashboard" class="project-link" target="_blank">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
@@ -942,7 +942,7 @@
                             <span class="tech-tag">Matplotlib</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/NazneenGenAI/machine-learning/blob/main/Classification_Project%201-%20Health%20Dataset%20-%20diabetes.ipynb" class="project-link">
+                            <a href="https://github.com/NazneenGenAI/machine-learning/blob/main/Classification_Project%201-%20Health%20Dataset%20-%20diabetes.ipynb" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                             <a href="#" class="project-link">
@@ -966,7 +966,7 @@
                             <span class="tech-tag">Feature Engineering</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/NazneenGenAI/machine-learning/blob/main/House-prices-advanced-regression-nazneen.ipynb" class="project-link">
+                            <a href="https://github.com/NazneenGenAI/machine-learning/blob/main/House-prices-advanced-regression-nazneen.ipynb" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
                             <a href="#" class="project-link">
@@ -990,7 +990,7 @@
                             <span class="tech-tag">Research</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://doi.org/10.1016/j.scitotenv.2024.176024" class="project-link">
+                            <a href="https://doi.org/10.1016/j.scitotenv.2024.176024" class="project-link" target="_blank">
                                 <i class="fas fa-book"></i> Publication
                             </a>
                             <a href="#" class="project-link">
@@ -1002,22 +1002,22 @@
 
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-file-pdf"></i>
+                        <i class="fas fa-comments"></i>
                     </div>
                     <div class="project-info">
-                        <h3 class="project-title">PDF to Image Converter</h3>
-                        <p>A client-side web application that converts PDF files to high-quality images (JPG/PNG) directly in the browser. Features drag-and-drop upload, configurable output settings including DPI scaling, quality control, and color filters like grayscale and sepia. Supports batch processing with ZIP download for multiple pages and individual page downloads. Built with PDF.js for reliable PDF rendering and requires no server-side processing - all conversions happen locally for privacy and speed.</p>
+                        <h3 class="project-title">Real-Time Chat Application</h3>
+                        <p>Feature-rich real-time chat application with secure authentication, private messaging, image sharing, and online/offline status indicators.</p>
                         <div class="project-tech">
-                            <span class="tech-tag">PDF.js</span>
-                            <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">HTML5 Canvas</span>
-                            <span class="tech-tag">Client-side</span>
+                            <span class="tech-tag">MERN Stack</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">TailwindCSS</span>
+                            <span class="tech-tag">JWT Auth</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/NazneenGenAI/PDF_Convertor" class="project-link">
+                            <a href="https://github.com/NazneenGenAI/Fullstack-Application/tree/master" class="project-link" target="_blank">
                                 <i class="fab fa-github"></i> GitHub
                             </a>
-                            <a href="https://pdfconvertoraktar.vercel.app/" class="project-link">
+                            <a href="#" class="project-link">
                                 <i class="fas fa-external-link-alt"></i> Live Demo
                             </a>
                         </div>
@@ -1038,7 +1038,7 @@
                             <span class="tech-tag">Environmental Science</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://doi.org/10.1016/j.jconhyd.2024.104480" class="project-link">
+                            <a href="https://doi.org/10.1016/j.jconhyd.2024.104480" class="project-link" target="_blank">
                                 <i class="fas fa-book"></i> Publication
                             </a>
                             <a href="#" class="project-link">
@@ -1060,7 +1060,7 @@
                     <div class="education-date">2024 • Q1 Journal</div>
                     <p>Advanced machine learning approach for predicting groundwater phosphate levels using geostatistics. CatBoost model achieved exceptional accuracy (R² = 0.99).</p>
                     <div class="project-links" style="margin-top: 1rem;">
-                        <a href="https://doi.org/10.1016/j.scitotenv.2024.176024" class="project-link">
+                        <a href="https://doi.org/10.1016/j.scitotenv.2024.176024" class="project-link" target="_blank">
                             <i class="fas fa-external-link-alt"></i> View Paper
                         </a>
                     </div>
